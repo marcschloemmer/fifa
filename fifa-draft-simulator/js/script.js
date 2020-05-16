@@ -6,8 +6,11 @@ let fifaPlayersCB;
 let fifaPlayersLM;
 let fifaPlayersRM;
 let fifaPlayersST;
-
-
+let playersArray;
+let currentRound=1;
+let currentPlayerNumber=0;
+let currentPlayer;
+let selectedPosition;
 
 
 function createPlayerNameFields() {
@@ -48,7 +51,9 @@ function createPlayerNameFields() {
 
 async function prepareDraft() {
 
-    var playersArray =  getAllPlayers();
+    document.getElementById("startDraft").style.display="none";
+
+     playersArray =  getAllPlayers();
     console.log(playersArray);
 
     var fifaPlayers = await loadFifaPlayers();
@@ -58,7 +63,7 @@ async function prepareDraft() {
 
 
     //load draft html
-    
+    loadDraftHTML();
 }
 
  function getAllPlayers(){
@@ -66,7 +71,7 @@ async function prepareDraft() {
     var playersArray = [];
     var playersDiv = document.getElementById("playerNames").getElementsByTagName("input");
     Array.from(playersDiv).forEach(element => {
-       playersArray.push([element.id,element.value ]);
+       playersArray.push({"name": element.value} );
     });
 
     //Shuffle array
@@ -77,7 +82,12 @@ async function prepareDraft() {
         playersArray[j] = temp
       }
 
+    //add available positions for each player
+    playersArray.forEach(element => {
+        element.availablePositions= ["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"];
+    });
     return playersArray;
+
 }
 
 
@@ -144,14 +154,94 @@ function preparePlayerArrays(fifaPlayers){
         return element.player_positions =="CF" || element.player_positions == "ST"
     } );
 
-    console.log(fifaPlayersGK);
-    console.log(fifaPlayersLB);
-    console.log(fifaPlayersCB);
-    console.log(fifaPlayersRB);
-    console.log(fifaPlayersCM);
-    console.log(fifaPlayersLM);
-    console.log(fifaPlayersRM);
-    console.log(fifaPlayersST);
+    // console.log(fifaPlayersGK);
+    // console.log(fifaPlayersLB);
+    // console.log(fifaPlayersCB);
+    // console.log(fifaPlayersRB);
+    // console.log(fifaPlayersCM);
+    // console.log(fifaPlayersLM);
+    // console.log(fifaPlayersRM);
+    // console.log(fifaPlayersST);
 
 }
+
+
+function loadDraftHTML(){
+
+   document.getElementById("selectPosition").style.display="block";
+
+
+   loadPositions();
+}
+
+function changeCurrentPlayer(){
+    //change current player plus one. if the number is not higher than max number
+    //-1 when max number
+
+    //check if 1 round is over
+
+
+    //Check if 11 rounds are over, if so , call mix all players together
+}
+
+function mixAllPlayersTogether(){
+    //mix all players into 1 big array
+}
+
+function loadPositions(){
+    var draftWindow = document.getElementById("draftWindow");
+     currentPlayer = playersArray[currentPlayerNumber];
+    document.getElementById("playerName").innerHTML = currentPlayer.name;
+    document.getElementById("selectPosition").display="block";
+
+   
+    currentPlayer.availablePositions.forEach(element => {
+        theInput = document.createElement("input");
+        theInput.setAttribute('type',"radio");
+        theInput.setAttribute('name',"position");
+        theInput.setAttribute('value',element);
+        label = document.createElement( 'label');
+        label.innerHTML += "<span> " + element + "</span>";
+        draftWindow.appendChild(theInput);
+        draftWindow.appendChild(label)
+        draftWindow.appendChild(document.createElement("br"));
+    });
+
+}
+
+function displayPlayers(){
+    document.getElementById("selectPosition").style.display="none";
+    document.getElementById("selectPlayer").style.display="block";
+
+   var els =  document.getElementsByName("position");
+   for (var i=0;i<els.length;i++){
+    if ( els[i].checked ) {
+    selectedPosition = els[i].value;
+    }
+  }
+
+   //delte selected position from available positions
+   currentPlayer.availablePositions = currentPlayer.availablePositions.filter(element => element !== selectedPosition);
+
+  //get corresponding array
+  var selectedPositionCut = selectedPosition.substring(0,2);
+  console.log(selectedPositionCut);
+  console.log(eval("fifaPlayers"+selectedPositionCut));
+   //display 5 random players from corresponding list
+   for (let i = 0; i < 5; i++) {
+       console.log(eval("fifaPlayers"+selectedPositionCut)[Math.floor(Math.random() * eval("fifaPlayers"+selectedPositionCut).length)]) ;
+   }
+   
+}
+   function playerSelected(){
+console.log(currentPlayer);
+
+    //Get selected player
+
+    //delete the player form the array
+
+    //call cahnge current player 
+
+   }
+   
 

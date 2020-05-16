@@ -59,11 +59,12 @@
   
     </div>
     
-    <button onclick="prepareDraft()" class="btn btn-primary">Start draft</button>
+    <button id="startDraft" onclick="prepareDraft()" class="btn btn-primary">Start draft</button>
 
     <div id ="draftWindow">
       <h4 id="playerName"></h4>
-      
+      <button id="selectPosition" style="display : none;" onclick="displayPlayers()" class="btn btn-primary">Select Position</button>
+      <button id="selectPlayer" style="display: none;" onclick="playerSelected()" class="btn btn-primary">Select Player</button>
     </div>
 
 
