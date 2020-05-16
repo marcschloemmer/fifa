@@ -11,7 +11,9 @@ let currentRound=1;
 let currentPlayerNumber=0;
 let currentPlayer;
 let selectedPosition;
-
+let displayedPlayers = [];
+let selectedPlayer;
+let selectedPositionCut;
 
 function createPlayerNameFields() {
   
@@ -85,6 +87,7 @@ async function prepareDraft() {
     //add available positions for each player
     playersArray.forEach(element => {
         element.availablePositions= ["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"];
+        element.selectedPlayers=[];
     });
     return playersArray;
 
@@ -213,6 +216,8 @@ function displayPlayers(){
     document.getElementById("selectPosition").style.display="none";
     document.getElementById("selectPlayer").style.display="block";
 
+
+        //get checked checkbox
    var els =  document.getElementsByName("position");
    for (var i=0;i<els.length;i++){
     if ( els[i].checked ) {
@@ -224,23 +229,64 @@ function displayPlayers(){
    currentPlayer.availablePositions = currentPlayer.availablePositions.filter(element => element !== selectedPosition);
 
   //get corresponding array
-  var selectedPositionCut = selectedPosition.substring(0,2);
+  selectedPositionCut = selectedPosition.substring(0,2);
   console.log(selectedPositionCut);
   console.log(eval("fifaPlayers"+selectedPositionCut));
    //display 5 random players from corresponding list
    for (let i = 0; i < 5; i++) {
-       console.log(eval("fifaPlayers"+selectedPositionCut)[Math.floor(Math.random() * eval("fifaPlayers"+selectedPositionCut).length)]) ;
+       var index = eval("fifaPlayers"+selectedPositionCut).indexOf(eval("fifaPlayers"+selectedPositionCut)[Math.floor(Math.random() * eval("fifaPlayers"+selectedPositionCut).length)] );
+       console.log(index);
+       displayedPlayers.push(eval("fifaPlayers"+selectedPositionCut).splice(index,1))
    }
-   
+ 
+   //delete positions radio buttons
+   var draftWindow = document.getElementById("draftWindow");
+   while (draftWindow.firstChild){
+       draftWindow.removeChild(draftWindow.firstChild);
+   }
+   //display players
+   displayedPlayers.forEach(element => {
+       console.log(element);
+    theInput = document.createElement("input");
+    theInput.setAttribute('type',"radio");
+    theInput.setAttribute('name',"player");
+    theInput.setAttribute('value',element[0].sofifa_id);
+    label = document.createElement( 'label');
+    label.innerHTML += "<span> " + element[0].short_name + ", Club: " + element[0].club + ", Rating: " + element[0].overall + "</span>";
+    draftWindow.appendChild(theInput);
+    draftWindow.appendChild(label)
+    draftWindow.appendChild(document.createElement("br"));
+   });
 }
    function playerSelected(){
-console.log(currentPlayer);
+    document.getElementById("selectPosition").style.display="block";
+    document.getElementById("selectPlayer").style.display="none";
+
 
     //Get selected player
+    var els =  document.getElementsByName("player");
+    for (var i=0;i<els.length;i++){
+     if ( els[i].checked ) {
+     selectedPlayer = els[i].value;
+     }
+   }
 
-    //delete the player form the array
+   console.log(selectedPlayer);
+    //push remaining players back into array and
+    //add selected player to current Players'array of selected players
+    
+   displayedPlayers.forEach(element => {
+        element[0].sofifa_id != selectedPlayer ? eval("fifaPlayers"+selectedPositionCut).push(element):playersArray[currentPlayerNumber].selectedPlayers.push(element);
 
-    //call cahnge current player 
+    });
+
+   console.log("after pushing players back", eval("fifaPlayers"+selectedPositionCut));
+   console.log("after adding player to player",playersArray[currentPlayerNumber] );
+   //clear all arrays
+   displayedPlayers = [];
+
+    
+    //change current player
 
    }
    
