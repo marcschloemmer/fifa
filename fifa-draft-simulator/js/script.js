@@ -1,3 +1,11 @@
+let fifaPlayersLB;
+let fifaPlayersGK;
+let fifaPlayersRB;
+let fifaPlayersCM;
+let fifaPlayersCB;
+let fifaPlayersLM;
+let fifaPlayersRM;
+let fifaPlayersST;
 
 
 
@@ -41,9 +49,16 @@ function createPlayerNameFields() {
 async function prepareDraft() {
 
     var playersArray =  getAllPlayers();
-  console.log(playersArray);
+    console.log(playersArray);
+
     var fifaPlayers = await loadFifaPlayers();
-    console.log(fifaPlayers);
+
+    //split players in different arrays
+    preparePlayerArrays(fifaPlayers.data)
+
+
+    //load draft html
+    
 }
 
  function getAllPlayers(){
@@ -53,6 +68,14 @@ async function prepareDraft() {
     Array.from(playersDiv).forEach(element => {
        playersArray.push([element.id,element.value ]);
     });
+
+    //Shuffle array
+    for(let i = playersArray.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * i)
+        const temp = playersArray[i]
+        playersArray[i] =playersArray[j]
+        playersArray[j] = temp
+      }
 
     return playersArray;
 }
@@ -77,5 +100,58 @@ async function prepareDraft() {
           });
     })
   
+}
+
+
+function preparePlayerArrays(fifaPlayers){
+     //delete players below 80 rating
+     fifaPlayers = fifaPlayers.filter(element => element.overall >80);
+    
+    //get first position
+    for (let i = 0; i < fifaPlayers.length; i++) {
+        
+        try {
+            const element = fifaPlayers[i];
+            element.player_positions = element.player_positions.split(',')[0];
+        } catch (error) {
+            console.log("fehler",fifaPlayers[i-1]);
+        }
+  
+    }
+   
+    console.log(fifaPlayers);
+
+    //split up players in arrays based on position
+    fifaPlayersGK = fifaPlayers.filter(element => element.player_positions == "GK");
+    fifaPlayersLB = fifaPlayers.filter(function (element){
+        return element.player_positions == "LB" || element.player_positions == "LWB";
+    } );
+    fifaPlayersCB = fifaPlayers.filter(element => element.player_positions == "CB");
+    fifaPlayersRB = fifaPlayers.filter(function (element){
+        return element.player_positions =="RB" || element.player_positions == "RWB"
+    } );
+    fifaPlayersCM = fifaPlayers.filter(function (element){
+        return element.player_positions =="CDM" || element.player_positions == "CM" || element.player_positions == "CAM"
+    } );
+    fifaPlayersLM =fifaPlayers.filter(function (element){
+        return element.player_positions =="LM" || element.player_positions == "LF" || element.player_positions == "LW" || element.player_positions == "LS"
+    } );
+
+    fifaPlayersRM = fifaPlayers.filter(function (element){
+        return element.player_positions =="RM" || element.player_positions == "RF" || element.player_positions == "RW" || element.player_positions == "RS"
+    } );
+    fifaPlayersST = fifaPlayers.filter(function (element){
+        return element.player_positions =="CF" || element.player_positions == "ST"
+    } );
+
+    console.log(fifaPlayersGK);
+    console.log(fifaPlayersLB);
+    console.log(fifaPlayersCB);
+    console.log(fifaPlayersRB);
+    console.log(fifaPlayersCM);
+    console.log(fifaPlayersLM);
+    console.log(fifaPlayersRM);
+    console.log(fifaPlayersST);
+
 }
 
