@@ -41,9 +41,9 @@
 
 
 <main role="main" class="container">
-
-  <div class="starter-template">
-    <h1>Fifa Draft Simulator</h1>
+  <h1>Fifa Draft Simulator</h1>
+  <div id="startMenu" class="starter-template">
+  
 
     <label>Fifa Players CSV
     </label>
@@ -51,22 +51,17 @@
     <label>Number of players:</label>
     
     <input type="number" id="players" onchange="createPlayerNameFields()" min="1" max="10">
+    <div id ="playerNames">
+    </div>
+    <button id="startDraft" onclick="prepareDraft()" class="btn btn-primary">Start draft</button>
   </div>
 
-
-    <div id ="playerNames">
-      
-  
-    </div>
-    
-    <button id="startDraft" onclick="prepareDraft()" class="btn btn-primary">Start draft</button>
-    <div id="menu">
+  <div id="menu">
      
-      <button id="selectPosition" style="display : none;" onclick="displayPlayers()" class="btn btn-success">Select Position</button>
-      <button id="selectPlayer" style="display: none;" onclick="playerSelected()" class="btn btn-primary">Select Player</button>
-    </div>
-    
-    <div class="container">
+    <button id="selectPosition" style="display : none;" onclick="displayPlayers()" class="btn btn-success">Select Position</button>
+    <button id="selectPlayer" style="display: none;" onclick="playerSelected()" class="btn btn-primary">Select Player</button>
+  </div>
+    <div id="container" class="container">
       <div class="row row-cols-2">
         <div  class="col">
           <h4 id="playerName"></h4>
@@ -86,6 +81,8 @@
 
     </div>
 
+    
+    
      
     </div>
   

@@ -57,7 +57,7 @@ function createPlayerNameFields() {
 
 async function prepareDraft() {
 
-    document.getElementById("startDraft").style.display="none";
+    document.getElementById("startMenu").style.display="none";
 
      playersArray =  getAllPlayers();
      
@@ -210,7 +210,7 @@ function changeCurrentPlayer(){
     
     //check if draft is done
     if(currentRound > 18){
-        alert("draft is done");   
+        displayAllTeams();
     } 
     loadPositions();
     displaySelectedTeam();
@@ -231,6 +231,7 @@ function loadPositions(){
         theInput.setAttribute('type',"radio");
         theInput.setAttribute('name',"position");
         theInput.setAttribute('value',element);
+        theInput.setAttribute("checked",true);
         label = document.createElement( 'label');
         label.innerHTML += "<span> " + element + "</span>";
         draftWindow.appendChild(theInput);
@@ -286,6 +287,7 @@ function displayPlayers(){
     theInput.setAttribute('type',"radio");
     theInput.setAttribute('name',"player");
     theInput.setAttribute('value',element[0].sofifa_id);
+    theInput.setAttribute("checked",true);
     label = document.createElement( 'label');
     label.innerHTML += "<span> " + element[0].short_name + ", Club: " + element[0].club + ", Rating: " + element[0].overall + "</span>";
     draftWindow.appendChild(theInput);
@@ -366,4 +368,29 @@ function displaySelectedTeam(){
         teamWindow.appendChild(document.createElement("br"));
        });
     
+}
+
+function displayAllTeams(){
+   var container =  document.getElementById("container");
+   container.innerHTML="";
+   var div = document.createElement("div");
+   div.classList.add("row");
+   div.classList.add("row-cols-"+amountOfPlayers);
+   container.appendChild(div);
+
+    playersArray.forEach(element => {
+       var playerDiv= document.createElement("div");
+       playerDiv.classList.add("col");
+       label = document.createElement( 'label');
+       label.innerHTML += "Team: " + element.name;
+       playerDiv.appendChild(label);
+      
+        element.selectedPlayers.forEach(player => {
+              label = document.createElement( 'label');
+            label.innerHTML += "<span> Position: " + player.player_positions + ", " +player.short_name + ", Rating: " + player.overall + "</span>";
+            playerDiv.appendChild(label);
+       
+        });
+        div.appendChild(playerDiv);
+    });
 }
