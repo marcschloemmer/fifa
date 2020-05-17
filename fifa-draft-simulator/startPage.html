@@ -60,16 +60,38 @@
     </div>
     
     <button id="startDraft" onclick="prepareDraft()" class="btn btn-primary">Start draft</button>
-
     <div id="menu">
-      <h4 id="playerName"></h4>
+     
       <button id="selectPosition" style="display : none;" onclick="displayPlayers()" class="btn btn-success">Select Position</button>
       <button id="selectPlayer" style="display: none;" onclick="playerSelected()" class="btn btn-primary">Select Player</button>
     </div>
-    <div id ="draftWindow">
+    
+    <div class="container">
+      <div class="row row-cols-2">
+        <div  class="col">
+          <h4 id="playerName"></h4>
+        </div>
+        <div class="col" >
+          <h4 id="playerName2"></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div  class="col" id ="draftWindow">
+        
+        </div>
+        <div  class="col" id ="teamWindow">
+         
+        </div>
+      </div>
+
+    </div>
+
      
     </div>
-    
+  
+   
+     
+    </div>
 
 </main><!-- /.container -->
 

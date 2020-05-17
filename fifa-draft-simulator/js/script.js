@@ -6,6 +6,8 @@ let fifaPlayersCB;
 let fifaPlayersLM;
 let fifaPlayersRM;
 let fifaPlayersST;
+let fifaPlayersDefender;
+let fifaPlayersMidfielder;
 let playersArray;
 let currentRound=1;
 let currentPlayerNumber=0;
@@ -14,6 +16,8 @@ let selectedPosition;
 let displayedPlayers = [];
 let selectedPlayer;
 let selectedPositionCut;
+let amountOfPlayers;
+let firstTimeOverEleven = true;
 
 function createPlayerNameFields() {
   
@@ -22,7 +26,7 @@ function createPlayerNameFields() {
     var amountOfDivs = playersDiv.getElementsByTagName("input").length;
 
     //Get value from field
-    var amountOfPlayers= parseInt(document.getElementById("players").value);
+    amountOfPlayers= parseInt(document.getElementById("players").value);
 
     //Calculate difference of actual input fields and desired
     var difference = amountOfPlayers-amountOfDivs;
@@ -56,6 +60,7 @@ async function prepareDraft() {
     document.getElementById("startDraft").style.display="none";
 
      playersArray =  getAllPlayers();
+     
     console.log(playersArray);
 
     var fifaPlayers = await loadFifaPlayers();
@@ -175,26 +180,49 @@ function loadDraftHTML(){
 
 
    loadPositions();
+   displaySelectedTeam();
 }
 
 function changeCurrentPlayer(){
-    //change current player plus one. if the number is not higher than max number
-    //-1 when max number
-
-    //check if 1 round is over
-
-
+    //check if even or odd round
+    var roundNumberEven = currentRound %2 == 0? true:false;
+    
+    //check if round is over and how to count next player
+    if((currentPlayerNumber+1)<amountOfPlayers && !roundNumberEven){
+        console.log("playernumber plus");
+        currentPlayerNumber++;
+    }
+    
+    else if((currentPlayerNumber-1) >=0 && roundNumberEven){
+        currentPlayerNumber--;
+        console.log("playernumber --");
+    }
+    else{
+        currentRound ++;
+        console.log("new Round");
+    }
+    
     //Check if 11 rounds are over, if so , call mix all players together
+    if(currentRound > 11 && firstTimeOverEleven){
+        prepareSubs();
+        firstTimeOverEleven = false;
+    }
+    
+    //check if draft is done
+    if(currentRound > 18){
+        alert("draft is done");   
+    } 
+    loadPositions();
+    displaySelectedTeam();
 }
 
-function mixAllPlayersTogether(){
-    //mix all players into 1 big array
-}
+
 
 function loadPositions(){
     var draftWindow = document.getElementById("draftWindow");
      currentPlayer = playersArray[currentPlayerNumber];
     document.getElementById("playerName").innerHTML = currentPlayer.name;
+    document.getElementById("playerName2").innerHTML = "Current Team: " +currentPlayer.name;
     document.getElementById("selectPosition").display="block";
 
    
@@ -229,9 +257,16 @@ function displayPlayers(){
    currentPlayer.availablePositions = currentPlayer.availablePositions.filter(element => element !== selectedPosition);
 
   //get corresponding array
-  selectedPositionCut = selectedPosition.substring(0,2);
+  if(currentRound<=11){
+    selectedPositionCut = selectedPosition.substring(0,2);
   console.log(selectedPositionCut);
-  console.log(eval("fifaPlayers"+selectedPositionCut));
+  }
+  //after 11 positions, new arrays, therefore no cut
+  else {
+    selectedPositionCut = selectedPosition.replace(/[0-9]/g, '');;
+  }
+  
+  //console.log(eval("fifaPlayers"+selectedPositionCut));
    //display 5 random players from corresponding list
    for (let i = 0; i < 5; i++) {
        var index = eval("fifaPlayers"+selectedPositionCut).indexOf(eval("fifaPlayers"+selectedPositionCut)[Math.floor(Math.random() * eval("fifaPlayers"+selectedPositionCut).length)] );
@@ -246,7 +281,7 @@ function displayPlayers(){
    }
    //display players
    displayedPlayers.forEach(element => {
-       console.log(element);
+  //  console.log(element);
     theInput = document.createElement("input");
     theInput.setAttribute('type',"radio");
     theInput.setAttribute('name',"player");
@@ -258,7 +293,7 @@ function displayPlayers(){
     draftWindow.appendChild(document.createElement("br"));
    });
 }
-   function playerSelected(){
+function playerSelected(){
     document.getElementById("selectPosition").style.display="block";
     document.getElementById("selectPlayer").style.display="none";
 
@@ -267,27 +302,68 @@ function displayPlayers(){
     var els =  document.getElementsByName("player");
     for (var i=0;i<els.length;i++){
      if ( els[i].checked ) {
-     selectedPlayer = els[i].value;
-     }
-   }
+    selectedPlayer = els[i].value;
+    }
+}
 
-   console.log(selectedPlayer);
-    //push remaining players back into array and
-    //add selected player to current Players'array of selected players
-    
-   displayedPlayers.forEach(element => {
-        element[0].sofifa_id != selectedPlayer ? eval("fifaPlayers"+selectedPositionCut).push(element):playersArray[currentPlayerNumber].selectedPlayers.push(element);
+console.log(selectedPlayer);
+//push remaining players back into array and
+//add selected player to current Players'array of selected players
 
+displayedPlayers.forEach(element => {
+    element[0].sofifa_id != selectedPlayer ? eval("fifaPlayers"+selectedPositionCut).push(element[0]):playersArray[currentPlayerNumber].selectedPlayers.push(element[0]);
+
+});
+
+console.log("after pushing players back", eval("fifaPlayers"+selectedPositionCut));
+console.log("after adding player to player",playersArray[currentPlayerNumber] );
+
+//clear all arrays
+displayedPlayers = [];
+
+//delete players radio buttons
+var draftWindow = document.getElementById("draftWindow");
+while (draftWindow.firstChild){
+    draftWindow.removeChild(draftWindow.firstChild);
+} 
+
+//change current player
+changeCurrentPlayer()
+
+}
+
+function prepareSubs(){
+    //mix defenders, midfields, strikers together
+    fifaPlayersDefender = fifaPlayersLB.concat(fifaPlayersCB);
+    fifaPlayersDefender = fifaPlayersDefender.concat(fifaPlayersRB);
+    console.log(fifaPlayersDefender);
+
+    fifaPlayersMidfielder = fifaPlayersLM.concat(fifaPlayersCM);
+    fifaPlayersMidfielder = fifaPlayersMidfielder.concat(fifaPlayersRM);
+    console.log(fifaPlayersMidfielder);
+
+    //add new available positions to each player
+       //add available positions for each player
+       playersArray.forEach(element => {
+        element.availablePositions= ["GK","Defender1","Defender2","Midfielder1","Midfielder2","Midfielder3","ST"];
+      
     });
+}
 
-   console.log("after pushing players back", eval("fifaPlayers"+selectedPositionCut));
-   console.log("after adding player to player",playersArray[currentPlayerNumber] );
-   //clear all arrays
-   displayedPlayers = [];
+function displaySelectedTeam(){
+    var selectedTeam =  playersArray[currentPlayerNumber].selectedPlayers;
+    var teamWindow = document.getElementById("teamWindow");
 
+    while (teamWindow.firstChild){
+        teamWindow.removeChild(teamWindow.firstChild);
+    }
+    selectedTeam.forEach(element => {
+       
+        label = document.createElement( 'label');
+        label.innerHTML += "<span> Position: " + element.player_positions + ", " +element.short_name + ", Rating: " + element.overall + "</span>";
+  
+        teamWindow.appendChild(label);
+        teamWindow.appendChild(document.createElement("br"));
+       });
     
-    //change current player
-
-   }
-   
-
+}
