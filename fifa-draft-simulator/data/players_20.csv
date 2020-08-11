@@ -174,7 +174,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 203574;https://sofifa.com/player/203574/john-stones/20/159586;J. Stones;Manchester City;83;CB;4;3;5;68;36;70;72;84;77;;;;;;
 210008;https://sofifa.com/player/210008/adrien-rabiot/20/159586;A. Rabiot;Juventus;83;CM, CDM;3;3;;73;74;79;80;77;80;;;;;;
 210035;https://sofifa.com/player/210035/alejandro-grimaldo-garcia/20/159586;Grimaldo;SL Benfica;83;LB;2;3;;85;63;79;84;77;71;;;;;;
-212188;https://sofifa.com/player/212188/timo-werner/20/159586;T. Werner;RB Leipzig;83;ST;4;3;9;92;81;67;83;35;69;;;;;;
+212188;https://sofifa.com/player/212188/timo-werner/20/159586;T. Werner;RB Leipzig;86;ST;4;3;9;92;81;67;83;35;69;;;;;;
 213565;https://sofifa.com/player/213565/thomas-lemar/20/159586;T. Lemar;Atlético Madrid;83;LM, CAM, RM;2;4;;83;76;82;85;59;67;;;;;;
 220793;https://sofifa.com/player/220793/davinson-sanchez/20/159586;D. Sánchez;Tottenham Hotspur;83;CB;3;2;23;74;45;57;66;83;81;;;;;;
 220834;https://sofifa.com/player/220834/marco-asensio-willemsen/20/159586;Marco Asensio;Real Madrid;83;LW, RW;3;4;20;81;80;82;84;43;62;;;;;;
@@ -247,7 +247,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 224293;https://sofifa.com/player/224293/ruben-diogo-da-silva-neves/20/159586;Rúben Neves;Wolverhampton Wanderers;82;CM;4;3;18;62;74;83;76;70;73;;;;;;
 225850;https://sofifa.com/player/225850/presnel-kimpembe/20/159586;P. Kimpembe;Paris Saint-Germain;82;CB;3;2;3;75;39;67;67;81;83;;;;;;
 225953;https://sofifa.com/player/225953/steven-bergwijn/20/159586;S. Bergwijn;PSV;82;RW, CAM, LW;2;4;7;89;75;76;85;40;73;;;;;;
-226753;https://sofifa.com/player/226753/andre-onana/20/159586;A. Onana;Ajax;82;GK;3;1;1;;;;;;;84;80;86;83;63;76
+226753;https://sofifa.com/player/226753/andre-onana/20/159586;A. Onana;Ajax;85;GK;3;1;1;;;;;;;84;80;86;83;63;76
 227928;https://sofifa.com/player/227928/nelson-cabral-semedo/20/159586;Nélson Semedo;FC Barcelona;82;RB;3;4;20;92;57;69;81;77;75;;;;;;
 193105;https://sofifa.com/player/193105/alphonse-areola/20/159586;A. Areola;Paris Saint-Germain;82;GK;3;1;16;;;;;;;85;79;80;84;55;78
 198009;https://sofifa.com/player/198009/mattia-perin/20/159586;M. Perin;Juventus;82;GK;3;1;;;;;;;;82;82;71;87;56;79
@@ -320,7 +320,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 202857;https://sofifa.com/player/202857/karim-bellarabi/20/159586;K. Bellarabi;Bayer 04 Leverkusen;82;RW;3;4;;92;76;74;85;34;71;;;;;;
 207494;https://sofifa.com/player/207494/jesse-lingard/20/159586;J. Lingard;Manchester United;82;CAM, RW;3;4;7;80;78;76;83;58;72;;;;;;
 208808;https://sofifa.com/player/208808/quincy-promes/20/159586;Q. Promes;Ajax;82;LW, RW;4;5;11;91;79;79;83;40;67;;;;;;
-208830;https://sofifa.com/player/208830/jamie-vardy/20/159586;J. Vardy;Leicester City;82;ST;3;3;;88;81;65;74;55;75;;;;;;
+208830;https://sofifa.com/player/208830/jamie-vardy/20/159586;J. Vardy;Leicester City;85;ST;3;3;;88;81;65;74;55;75;;;;;;
 215333;https://sofifa.com/player/215333/duvan-zapata/20/159586;D. Zapata;Atalanta;82;ST;4;3;7;71;81;56;76;37;83;;;;;;
 216475;https://sofifa.com/player/216475/jose-luis-morales-nogales/20/159586;Morales;Levante UD;82;ST, LM;4;4;;89;81;76;85;58;69;;;;;;
 230168;https://sofifa.com/player/230168/raphael-william-anjos-rochedo/20/159586;Raphaelito Anjos;Grêmio;82;GK;2;1;1;;;;;;;79;84;77;78;42;83
@@ -328,7 +328,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 230258;https://sofifa.com/player/230258/rosberto-j-dourado-santos/20/159586;Rosberto Dourado;Atlético Mineiro;82;CDM, CM, CAM;4;2;13;81;57;74;77;82;74;;;;;;
 245309;https://sofifa.com/player/245309/egidio-maestre-schetino/20/159586;E. Schetino;Uruguay;82;CB;3;2;4;80;43;56;65;83;76;;;;;;
 245313;https://sofifa.com/player/245313/jose-maria-sildero/20/159586;J. Sildero;Uruguay;82;CAM, RM;4;4;17;81;77;81;82;40;71;;;;;;
-231478;https://sofifa.com/player/231478/lautaro-martinez/20/159586;L. Martínez;Inter;81;ST;4;4;22;81;77;68;82;40;83;;;;;;
+231478;https://sofifa.com/player/231478/lautaro-martinez/20/159586;L. Martínez;Inter;84;ST;4;4;22;81;77;68;82;40;83;;;;;;
 234906;https://sofifa.com/player/234906/houssem-aouar/20/159586;H. Aouar;Olympique Lyonnais;81;CM;3;4;;79;71;79;83;66;67;;;;;;
 235569;https://sofifa.com/player/235569/tanguy-ndombele/20/159586;T. Ndombele;Tottenham Hotspur;81;CM, CDM;3;4;17;80;65;78;87;70;78;;;;;;
 240130;https://sofifa.com/player/240130/eder-gabriel-militao/20/159586;Éder Militão;Real Madrid;81;CB, RB;2;2;;79;50;66;71;81;81;;;;;;
@@ -349,7 +349,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 205988;https://sofifa.com/player/205988/luke-shaw/20/159586;L. Shaw;Manchester United;81;LB;2;3;;82;54;75;80;80;78;;;;;;
 207877;https://sofifa.com/player/207877/josef-martinez/20/159586;J. Martínez;Atlanta United;81;ST;4;3;17;89;79;61;79;25;73;;;;;;
 208135;https://sofifa.com/player/208135/abdoulaye-doucoure/20/159586;A. Doucouré;Watford;81;CDM, CM;3;3;;69;74;73;77;79;82;;;;;;
-226790;https://sofifa.com/player/226790/wilfred-ndidi/20/159586;W. Ndidi;Leicester City;81;CDM, CM;4;3;;71;62;67;74;83;82;;;;;;
+226790;https://sofifa.com/player/226790/wilfred-ndidi/20/159586;W. Ndidi;Leicester City;84;CDM, CM;4;3;;71;62;67;74;83;82;;;;;;
 200316;https://sofifa.com/player/200316/timo-horn/20/159586;T. Horn;1. FC Köln;81;GK;3;1;;;;;;;;82;80;79;84;48;78
 204638;https://sofifa.com/player/204638/willi-orban/20/159586;W. Orban;RB Leipzig;81;CB;3;2;6;52;37;52;56;82;80;;;;;;
 206467;https://sofifa.com/player/206467/alassane-plea/20/159586;A. Plea;Borussia Mönchengladbach;81;ST, LW;3;4;;76;81;76;78;39;74;;;;;;
@@ -584,7 +584,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 226229;https://sofifa.com/player/226229/thilo-kehrer/20/159586;T. Kehrer;Paris Saint-Germain;79;CB, RB;5;3;2;74;44;65;67;78;76;;;;;;
 227796;https://sofifa.com/player/227796/christian-pulisic/20/159586;C. Pulisic;Chelsea;79;LW, RW;4;4;10;90;68;70;84;36;58;;;;;;
 230938;https://sofifa.com/player/230938/franck-yannick-kessie/20/159586;F. Kessié;Milan;79;CM;4;3;8;72;72;72;77;78;88;;;;;;
-235212;https://sofifa.com/player/235212/achraf-hakimi/20/159586;A. Hakimi;Borussia Dortmund;79;LB, RB;2;3;;92;62;72;80;74;74;;;;;;
+235212;https://sofifa.com/player/235212/achraf-hakimi/20/159586;A. Hakimi;Borussia Dortmund;82;LB, RB;2;3;;92;62;72;80;74;74;;;;;;
 235424;https://sofifa.com/player/235424/diadie-samassekou/20/159586;D. Samassékou;TSG 1899 Hoffenheim;79;CDM, CM;3;3;;73;49;69;72;77;77;;;;;;
 235945;https://sofifa.com/player/235945/marc-roca-junque/20/159586;Marc Roca;RCD Espanyol;79;CDM, CM;3;3;;61;62;77;73;73;68;;;;;;
 238476;https://sofifa.com/player/238476/dan-axel-zagadou/20/159586;D. Zagadou;Borussia Dortmund;79;CB, LB;3;2;;62;34;61;50;80;80;;;;;;
@@ -610,7 +610,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 214947;https://sofifa.com/player/214947/jean-philippe-gbamin/20/159586;J. Gbamin;Everton;79;CDM, CM, CB;3;3;4;80;57;73;74;78;83;;;;;;
 220253;https://sofifa.com/player/220253/munir-el-haddadi/20/159586;Munir;Sevilla FC;79;ST, RW, LM;3;4;;84;77;75;81;35;66;;;;;;
 220651;https://sofifa.com/player/220651/jose-angel-esmoris-tasende/20/159586;Angeliño;Manchester City;79;LB;3;4;;85;64;79;81;72;78;;;;;;
-220697;https://sofifa.com/player/220697/james-maddison/20/159586;J. Maddison;Leicester City;79;CAM, CM, LW;4;4;;75;72;82;79;39;57;;;;;;
+220697;https://sofifa.com/player/220697/james-maddison/20/159586;J. Maddison;Leicester City;82;CAM, CM, LW;4;4;;75;72;82;79;39;57;;;;;;
 228941;https://sofifa.com/player/228941/andre-miguel-valente-da-silva/20/159586;André Silva;Milan;79;ST;3;4;;77;75;63;78;43;75;;;;;;
 231943;https://sofifa.com/player/231943/richarlison-de-andrade/20/159586;Richarlison;Everton;79;RM, LM, ST;5;4;;84;77;72;81;45;79;;;;;;
 232862;https://sofifa.com/player/232862/shoya-nakajima/20/159586;S. Nakajima;FC Porto;79;LM, CF;4;4;;90;73;72;83;37;50;;;;;;
@@ -759,12 +759,12 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 235926;https://sofifa.com/player/235926/matias-zaracho/20/159586;M. Zaracho;Racing Club;78;CAM, RM, CM;3;4;15;87;66;74;83;63;62;;;;;;
 242236;https://sofifa.com/player/242236/francisco-reis-ferreira/20/159586;Ferro;SL Benfica;78;CB;2;2;;54;43;56;63;80;76;;;;;;
 224221;https://sofifa.com/player/224221/joachim-andersen/20/159586;J. Andersen;Olympique Lyonnais;78;CB;3;2;;60;40;54;55;78;79;;;;;;
-229261;https://sofifa.com/player/229261/denis-zakaria/20/159586;D. Zakaria;Borussia Mönchengladbach;78;CM, CDM;3;3;17;82;63;75;76;79;82;;;;;;
+229261;https://sofifa.com/player/229261/denis-zakaria/20/159586;D. Zakaria;Borussia Mönchengladbach;81;CM, CDM;3;3;17;82;63;75;76;79;82;;;;;;
 231633;https://sofifa.com/player/231633/issa-diop/20/159586;I. Diop;West Ham United;78;CB;3;2;;67;36;52;55;79;79;;;;;;
 234045;https://sofifa.com/player/234045/henry-onyekuru/20/159586;H. Onyekuru;AS Monaco;78;LM, ST;4;4;;90;74;67;82;34;56;;;;;;
 234612;https://sofifa.com/player/234612/jonathan-ikone/20/159586;J. Ikoné;LOSC Lille;78;CAM;4;4;;89;70;72;82;33;60;;;;;;
 235889;https://sofifa.com/player/235889/cengiz-under/20/159586;C. Ünder;Roma;78;RW, RM;4;3;;82;75;74;82;37;50;;;;;;
-222665;https://sofifa.com/player/222665/martin-odegaard/20/159586;M. Ødegaard;Real Sociedad;78;RW, CAM, CM;2;5;20;74;69;82;85;40;49;;;;;;
+222665;https://sofifa.com/player/222665/martin-odegaard/20/159586;M. Ødegaard;Real Sociedad;82;RW, CAM, CM;2;5;20;74;69;82;85;40;49;;;;;;
 225085;https://sofifa.com/player/225085/jonathan-bamba/20/159586;J. Bamba;LOSC Lille;78;LM;3;4;;89;75;69;82;36;62;;;;;;
 225309;https://sofifa.com/player/225309/nadiem-amiri/20/159586;N. Amiri;Bayer 04 Leverkusen;78;CAM, CM;3;4;;73;67;76;83;54;64;;;;;;
 227813;https://sofifa.com/player/227813/oleksandr-zinchenko/20/159586;O. Zinchenko;Manchester City;78;LB;3;3;;71;66;80;79;77;66;;;;;;
@@ -1008,7 +1008,7 @@ sofifa_id;player_url;short_name;club;overall;player_positions;weak_foot;skill_mo
 226166;https://sofifa.com/player/226166/nordi-mukiele/20/159586;N. Mukiele;RB Leipzig;77;CB, RB;3;3;;77;42;68;72;76;76;;;;;;
 232411;https://sofifa.com/player/232411/christopher-nkunku/20/159586;C. Nkunku;RB Leipzig;77;CM, LW, RW;3;3;;77;74;75;80;69;65;;;;;;
 238359;https://sofifa.com/player/238359/marcus-wendel-valle-da-silva/20/159586;Wendel;Sporting CP;77;CM;3;3;;78;71;74;79;72;71;;;;;;
-239053;https://sofifa.com/player/239053/federico-valverde/20/159586;F. Valverde;Real Madrid;77;CM, LM, CDM;3;3;;68;69;73;73;66;67;;;;;;
+239053;https://sofifa.com/player/239053/federico-valverde/20/159586;F. Valverde;Real Madrid;81;CM, LM, CDM;3;3;;68;69;73;73;66;67;;;;;;
 239301;https://sofifa.com/player/239301/lisandro-martinez/20/159586;L. Martínez;Ajax;77;CB, LB;3;3;;75;55;70;74;77;76;;;;;;
 241095;https://sofifa.com/player/241095/nikola-vlasic/20/159586;N. Vlašić;PFC CSKA Moscow;77;CAM, LM;4;3;;79;70;73;80;48;66;;;;;;
 245279;https://sofifa.com/player/245279/sergio-reguilon-rodriguez/20/159586;Reguilón;Sevilla FC;77;LB;3;2;;78;50;71;74;75;69;;;;;;
