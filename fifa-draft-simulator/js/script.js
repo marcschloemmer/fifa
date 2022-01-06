@@ -15,10 +15,18 @@ let currentPlayer;
 let selectedPosition;
 let displayedPlayers = [];
 let selectedPlayer;
+let selectedFormation;
 let selectedPositionCut;
 let amountOfPlayers;
+let formationsSelected = 0;
+var selectedFormations=[];
 let firstTimeOverEleven = true;
 
+//all available formations in fifa 20 plus corresponding positions
+let formations = [{"Formation":"3-1-4-2","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","CM3","LM","RM","ST1","ST2"]},{"Formation":"3-4-1-2","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","CM3","LM","RM","ST1","ST2"]},{"Formation":"3-4-2-1","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","LM","LM","RM","RM","ST1"]},{"Formation":"3-4-3 diamond","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","LM","LM","RM","RM","ST1"]},{"Formation":"3-4-3 flat","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","LM","LM","RM","RM","ST1"]},{"Formation":"3-5-1-1","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","CM3","LM","RM","ST1","ST2"]},{"Formation":"3-5-2","availablePositions":["GK","CB1","CB2","CB3","CM1","CM2","CM3","LM","RM","ST1","ST2"]},{"Formation":"4-1-2-1-2 narrow","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","CM4","ST1","ST2"]},{"Formation":"4-1-2-1-2 wide","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"]},{"Formation":"4-1-3-2","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"]},{"Formation":"4-1-4-1","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-2-2-2","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","CM4","ST1","ST2"]},{"Formation":"4-2-3-1 narrow","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","CM4","CM5","ST1"]},{"Formation":"4-2-3-1 wide","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-2-4","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"]},{"Formation":"4-3-1-2","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","CM4","ST1","ST2"]},{"Formation":"4-3-2-1","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-3-3 attack","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-3-3 defend","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-3-3 false 9","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-3-3 flat","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-3-3 holding","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-4-1-1 attack","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"]},{"Formation":"4-4-1-1 midfield","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-4-2 flat","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"]},{"Formation":"4-4-2 holding","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","LM","RM","ST1","ST2"]},{"Formation":"4-5-1 attack","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"4-5-1 flat","availablePositions":["GK","LB","CB1","CB2","RB","CM1","CM2","CM3","LM","RM","ST1"]},{"Formation":"5-2-1-2","availablePositions":["GK","LB","CB1","CB2","CB3","RB","CM1","CM2","CM3","ST1","ST2"]},{"Formation":"5-2-3","availablePositions":["GK","LB","CB1","CB2","CB3","RB","CM1","CM2","LM","RM","ST1"]},{"Formation":"5-3-2","availablePositions":["GK","LB","CB1","CB2","CB3","RB","CM1","CM2","CM3","ST1","ST2"]},{"Formation":"5-4-1 diamond","availablePositions":["GK","LB","CB1","CB2","CB3","RB","CM1","CM2","LM","RM","ST1"]},{"Formation":"5-4-1 flat","availablePositions":["GK","LB","CB1","CB2","CB3","RB","CM1","CM2","LM","RM","ST1"]},
+];
+
+console.log(formations);
 function createPlayerNameFields() {
 
     var playersDiv = document.getElementById("playerNames");
@@ -57,6 +65,7 @@ function createPlayerNameFields() {
 
 async function prepareDraft() {
 
+    
     document.getElementById("startMenu").style.display = "none";
 
     playersArray = getAllPlayers();
@@ -68,10 +77,13 @@ async function prepareDraft() {
     //split players in different arrays
     preparePlayerArrays(fifaPlayers.data)
 
+   
 
     //load draft html
     loadDraftHTML();
 }
+
+
 
 function getAllPlayers() {
 
@@ -91,7 +103,7 @@ function getAllPlayers() {
 
     //add available positions for each player
     playersArray.forEach(element => {
-        element.availablePositions = ["GK", "LB", "CB1", "CB2", "RB", "CM1", "CM2", "LM", "RM", "ST1", "ST2"];
+    
         element.selectedPlayers = [];
     });
     return playersArray;
@@ -168,11 +180,127 @@ function preparePlayerArrays(fifaPlayers) {
 
 function loadDraftHTML() {
 
-    document.getElementById("selectPosition").style.display = "block";
+   
+
+     //display formation selection
+     document.getElementById("selectFormation").style.display = "block";
+        displayFormations();
+  
+      
+   
 
 
-    loadPositions();
-    displaySelectedTeam();
+}
+
+function displayFormations(){
+
+    if(formationsSelected == playersArray.length){
+        document.getElementById("selectPosition").style.display = "block";
+        document.getElementById("selectFormation").style.display = "none";
+        currentPlayerNumber = 0;
+        loadPositions();
+        displaySelectedTeam();
+    }
+    else{
+      
+        console.log("formations length",formations.length);
+        for (let i = 0; i < 5; i++) {
+            var index = formations.indexOf(formations[Math.floor(Math.random() * formations.length)]);
+     
+            selectedFormations.push(formations.splice(index, 1))
+        }
+        var draftWindow = document.getElementById("draftWindow");
+        currentPlayer = playersArray[currentPlayerNumber];
+        document.getElementById("playerName").innerHTML = currentPlayer.name;
+        document.getElementById("playerName2").innerHTML = "Current Team: " + currentPlayer.name;
+        document.getElementById("selectPosition").display = "block";
+        console.log(currentPlayer,selectedFormations);
+        console.log("formations length danach",formations.length)
+        selectedFormations.forEach(element => {
+            console.log("foreach",element);
+            console.log("foreach",element[0]);  
+            theInput = document.createElement("input");
+            theInput.setAttribute('type', "radio");
+            theInput.setAttribute('name', "formation");
+            theInput.setAttribute('value', element[0].Formation);
+            theInput.setAttribute("checked", true);
+            label = document.createElement('label');
+            label.innerHTML += "<span> " + element[0].Formation + "</span>";
+            draftWindow.appendChild(theInput);
+            draftWindow.appendChild(label);
+
+           var image = document.createElement("img");
+           var imageLink;
+           var letters = /^[0-9a-zA-Z]+$/;
+
+            if(element[0].Formation.slice(-3).match(letters)){
+                imageLink = 'https://www.fifplay.com/img/fifa/20/formations/fifa-' + element[0].Formation.split(' ').join('-')+'.jpg';
+            }
+            else {
+                imageLink = 'https://www.fifplay.com/img/fifa/20/formations/fut-' + element[0].Formation.split(' ').join('-')+'.jpg' ;
+            }
+            image.setAttribute('src',imageLink );
+            image.setAttribute('width','300px');
+            draftWindow.appendChild(document.createElement("br"));
+            draftWindow.appendChild(image);
+            draftWindow.appendChild(document.createElement("br"));
+        });
+    
+        formationsSelected++;
+    
+        btn1 = document.createElement("button");
+            btn1.classList.add("btn");
+            btn1.classList.add("btn-success");
+    
+            btn1.onclick = playerSelected;
+            btn1.innerHTML = "Select Formation";
+    
+    
+    }
+        
+}
+
+function assignFormation(){
+
+    //push all formataions back 
+    selectedFormations.forEach(element => {
+        formations.push(element[0]);
+
+    });
+
+    console.log("formations wenn alles gepusht",formations.length);
+
+    var tmpFormation;
+    //get checked formation
+    var els = document.getElementsByName("formation");
+    for (var i = 0; i < els.length; i++) {
+        if (els[i].checked) {
+             //assign postitions to player
+           tmpFormation = els[i].value;
+    
+        }
+    }
+
+    
+for (let index = 0; index < formations.length; index++) {
+    const element = formations[index];
+    
+    if(element.Formation == tmpFormation){
+        playersArray[currentPlayerNumber].availablePositions = element.availablePositions;
+    }
+}
+
+
+    //delete all checkboxes from 
+    var draftWindow = document.getElementById("draftWindow");
+    while (draftWindow.firstChild) {
+        draftWindow.removeChild(draftWindow.firstChild);
+    }
+
+    selectedFormations = [];
+   
+    currentPlayerNumber++;
+    displayFormations();
 }
 
 function changeCurrentPlayer() {
@@ -216,7 +344,7 @@ function loadPositions() {
     document.getElementById("playerName").innerHTML = currentPlayer.name;
     document.getElementById("playerName2").innerHTML = "Current Team: " + currentPlayer.name;
     document.getElementById("selectPosition").display = "block";
-
+    
 
     currentPlayer.availablePositions.forEach(element => {
         theInput = document.createElement("input");
@@ -247,8 +375,9 @@ function displayPlayers() {
     }
 
     //delte selected position from available positions
+    if (currentRound <= 11) {
     currentPlayer.availablePositions = currentPlayer.availablePositions.filter(element => element !== selectedPosition);
-
+    }
     //get corresponding array
     if (currentRound <= 11) {
         selectedPositionCut = selectedPosition.substring(0, 2);
@@ -399,7 +528,7 @@ function prepareSubs() {
     //add new available positions to each player
     //add available positions for each player
     playersArray.forEach(element => {
-        element.availablePositions = ["GK", "Defender1", "Defender2", "Midfielder1", "Midfielder2", "Midfielder3", "ST"];
+        element.availablePositions = ["GK", "Defender", , "Midfielder", "ST"];
 
     });
 }
@@ -411,15 +540,63 @@ function displaySelectedTeam() {
     while (teamWindow.firstChild) {
         teamWindow.removeChild(teamWindow.firstChild);
     }
-    selectedTeam.forEach(element => {
 
+    selectedTeamGK = selectedTeam.filter(element => element.player_positions == "GK");
+    displaySpecificPlayers(selectedTeamGK,teamWindow,"Goalkeeper");
+
+    selectedTeamLB = selectedTeam.filter(function (element) {
+        return element.player_positions == "LB" || element.player_positions == "LWB";
+    });
+    displaySpecificPlayers(selectedTeamLB,teamWindow,"Left Back");
+    
+    selectedTeamCB = selectedTeam.filter(element => element.player_positions == "CB");
+    displaySpecificPlayers(selectedTeamCB,teamWindow,"Centre Back");
+
+    selectedTeamRB = selectedTeam.filter(function (element) {
+        return element.player_positions == "RB" || element.player_positions == "RWB"
+    });
+    displaySpecificPlayers(selectedTeamRB,teamWindow,"Right Back");
+
+    selectedTeamCM = selectedTeam.filter(function (element) {
+        return element.player_positions == "CDM" || element.player_positions == "CM" || element.player_positions == "CAM"
+    });
+    displaySpecificPlayers(selectedTeamCM,teamWindow,"Centre Midfield");
+   
+    selectedTeamLM = selectedTeam.filter(function (element) {
+        return element.player_positions == "LM" || element.player_positions == "LF" || element.player_positions == "LW" || element.player_positions == "LS"
+    });
+    displaySpecificPlayers(selectedTeamLM,teamWindow,"Left Midfield");
+
+    selectedTeamRM = selectedTeam.filter(function (element) {
+        return element.player_positions == "RM" || element.player_positions == "RF" || element.player_positions == "RW" || element.player_positions == "RS"
+    });
+    displaySpecificPlayers(selectedTeamRM,teamWindow,"Right Midfield");
+
+    selectedTeamST = selectedTeam.filter(function (element) {
+        return element.player_positions == "CF" || element.player_positions == "ST"
+    });
+    displaySpecificPlayers(selectedTeamST,teamWindow,"Striker");
+
+ 
+
+}
+
+function displaySpecificPlayers(array,teamWindow,position){
+
+    if (array.length > 0) {
+        headline = document.createElement('h5');
+    headline.innerHTML=position;
+    teamWindow.appendChild(headline);
+    }
+    array.forEach(element => {
+
+       
         label = document.createElement('label');
         label.innerHTML += "<span> Position: " + element.player_positions + ", " + element.short_name + ", Rating: " + element.overall + "</span>";
 
         teamWindow.appendChild(label);
         teamWindow.appendChild(document.createElement("br"));
     });
-
 }
 
 function displayAllTeams() {
@@ -436,13 +613,23 @@ function displayAllTeams() {
         label = document.createElement('label');
         label.innerHTML += "Team: " + element.name;
         playerDiv.appendChild(label);
+        linebreak = document.createElement("br");
+        playerDiv.appendChild(linebreak)
+
+        element.selectedPlayers.sort((a,b) => (a.overall > b.overall) ? -1 : ((b.overall > a.overall) ? 1 : 0))
 
         element.selectedPlayers.forEach(player => {
             label = document.createElement('label');
-            label.innerHTML += "<span> Position: " + player.player_positions + ", " + player.short_name+"</span>";
+            label.innerHTML += 
+            "<span>" + player.overall + ", " + 
+            player.short_name+   "</span>";
             playerDiv.appendChild(label);
+            linebreak = document.createElement("br");
+            playerDiv.appendChild(linebreak)
 
         });
         div.appendChild(playerDiv);
+        document.getElementById("selectPosition").style.display = "none";
+
     });
 }
