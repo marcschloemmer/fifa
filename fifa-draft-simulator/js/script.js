@@ -135,43 +135,44 @@ function loadFifaPlayers() {
 
 function preparePlayerArrays(fifaPlayers) {
     //delete players below 80 rating
-    fifaPlayers = fifaPlayers.filter(element => element.overall > 81);
+    console.log(fifaPlayers)
+    fifaPlayers = fifaPlayers.filter(element => element.Overall > 81);
 
     //get first position
     for (let i = 0; i < fifaPlayers.length; i++) {
 
         try {
             const element = fifaPlayers[i];
-            element.player_positions = element.player_positions.split(',')[0];
+            element.Positions = element.Positions.split(',')[0];
         } catch (error) {
-            // console.log("fehler",fifaPlayers[i-1]);
+             console.log("fehler",fifaPlayers[i-1]);
         }
 
     }
 
-    //   console.log(fifaPlayers);
-
+    console.log(fifaPlayers);
+    
     //split up players in arrays based on position
-    fifaPlayersGK = fifaPlayers.filter(element => element.player_positions == "GK");
+    fifaPlayersGK = fifaPlayers.filter(element => element.Positions == "GK");
     fifaPlayersLB = fifaPlayers.filter(function (element) {
-        return element.player_positions == "LB" || element.player_positions == "LWB";
+        return element.Positions == "LB" || element.Positions == "LWB";
     });
-    fifaPlayersCB = fifaPlayers.filter(element => element.player_positions == "CB");
+    fifaPlayersCB = fifaPlayers.filter(element => element.Positions == "CB");
     fifaPlayersRB = fifaPlayers.filter(function (element) {
-        return element.player_positions == "RB" || element.player_positions == "RWB"
+        return element.Positions == "RB" || element.Positions == "RWB"
     });
     fifaPlayersCM = fifaPlayers.filter(function (element) {
-        return element.player_positions == "CDM" || element.player_positions == "CM" || element.player_positions == "CAM"
+        return element.Positions == "CDM" || element.Positions == "CM" || element.Positions == "CAM"
     });
     fifaPlayersLM = fifaPlayers.filter(function (element) {
-        return element.player_positions == "LM" || element.player_positions == "LF" || element.player_positions == "LW" || element.player_positions == "LS"
+        return element.Positions == "LM" || element.Positions == "LF" || element.Positions == "LW" || element.Positions == "LS"
     });
 
     fifaPlayersRM = fifaPlayers.filter(function (element) {
-        return element.player_positions == "RM" || element.player_positions == "RF" || element.player_positions == "RW" || element.player_positions == "RS"
+        return element.Positions == "RM" || element.Positions == "RF" || element.Positions == "RW" || element.Positions == "RS"
     });
     fifaPlayersST = fifaPlayers.filter(function (element) {
-        return element.player_positions == "CF" || element.player_positions == "ST"
+        return element.Positions == "CF" || element.Positions == "ST"
     });
 
 
@@ -432,36 +433,36 @@ function displayPlayers() {
 
         h5 = document.createElement("h5");
         h5.classList.add("card-title");
-        h5.innerHTML = element[0].short_name;
+        h5.innerHTML = element[0].FullName;
 
         divCardBody.appendChild(h5);
 
         
         p1 = document.createElement("p");
         p1.classList.add("card-text");
-        p1.innerHTML = "Rating: " + element[0].overall;
+        p1.innerHTML = "Rating: " + element[0].Overall;
         divCardBody.appendChild(p1);
 
         p1 = document.createElement("p");
         p1.classList.add("card-text");
-        p1.innerHTML = "Weak Foot: " + element[0].weak_foot + ", Skill Moves: " + element[0].skill_moves;
+        p1.innerHTML = "Weak Foot: " + element[0].WeakFoot + ", Skill Moves: " + element[0].SkillMoves;
         divCardBody.appendChild(p1);
 
         p1 = document.createElement("p");
         p1.classList.add("card-text");
-        p1.innerHTML = "Pace : " + element[0].pace + ", Shooting: " + element[0].shooting;
-        divCardBody.appendChild(p1);
-
-
-        p1 = document.createElement("p");
-        p1.classList.add("card-text");
-        p1.innerHTML = "Passing: " + element[0].passing + ", Dribbling: " + element[0].dribbling;
+        p1.innerHTML = "Pace : " + element[0].PaceTotal + ", Shooting: " + element[0].ShootingTotal;
         divCardBody.appendChild(p1);
 
 
         p1 = document.createElement("p");
         p1.classList.add("card-text");
-        p1.innerHTML = "Defending: " + element[0].defending + ", Physic: " + element[0].physic;
+        p1.innerHTML = "Passing: " + element[0].PassingTotal + ", Dribbling: " + element[0].DribblingTotal;
+        divCardBody.appendChild(p1);
+
+
+        p1 = document.createElement("p");
+        p1.classList.add("card-text");
+        p1.innerHTML = "Defending: " + element[0].DefendingTotal + ", Physic: " + element[0].PhysicalityTotal;
         divCardBody.appendChild(p1);
 
 
@@ -541,39 +542,39 @@ function displaySelectedTeam() {
         teamWindow.removeChild(teamWindow.firstChild);
     }
 
-    selectedTeamGK = selectedTeam.filter(element => element.player_positions == "GK");
+    selectedTeamGK = selectedTeam.filter(element => element.Positions == "GK");
     displaySpecificPlayers(selectedTeamGK,teamWindow,"Goalkeeper");
 
     selectedTeamLB = selectedTeam.filter(function (element) {
-        return element.player_positions == "LB" || element.player_positions == "LWB";
+        return element.Positions == "LB" || element.Positions == "LWB";
     });
     displaySpecificPlayers(selectedTeamLB,teamWindow,"Left Back");
     
-    selectedTeamCB = selectedTeam.filter(element => element.player_positions == "CB");
+    selectedTeamCB = selectedTeam.filter(element => element.Positions == "CB");
     displaySpecificPlayers(selectedTeamCB,teamWindow,"Centre Back");
 
     selectedTeamRB = selectedTeam.filter(function (element) {
-        return element.player_positions == "RB" || element.player_positions == "RWB"
+        return element.Positions == "RB" || element.Positions == "RWB"
     });
     displaySpecificPlayers(selectedTeamRB,teamWindow,"Right Back");
 
     selectedTeamCM = selectedTeam.filter(function (element) {
-        return element.player_positions == "CDM" || element.player_positions == "CM" || element.player_positions == "CAM"
+        return element.Positions == "CDM" || element.Positions == "CM" || element.Positions == "CAM"
     });
     displaySpecificPlayers(selectedTeamCM,teamWindow,"Centre Midfield");
    
     selectedTeamLM = selectedTeam.filter(function (element) {
-        return element.player_positions == "LM" || element.player_positions == "LF" || element.player_positions == "LW" || element.player_positions == "LS"
+        return element.Positions == "LM" || element.Positions == "LF" || element.Positions == "LW" || element.Positions == "LS"
     });
     displaySpecificPlayers(selectedTeamLM,teamWindow,"Left Midfield");
 
     selectedTeamRM = selectedTeam.filter(function (element) {
-        return element.player_positions == "RM" || element.player_positions == "RF" || element.player_positions == "RW" || element.player_positions == "RS"
+        return element.Positions == "RM" || element.Positions == "RF" || element.Positions == "RW" || element.Positions == "RS"
     });
     displaySpecificPlayers(selectedTeamRM,teamWindow,"Right Midfield");
 
     selectedTeamST = selectedTeam.filter(function (element) {
-        return element.player_positions == "CF" || element.player_positions == "ST"
+        return element.Positions == "CF" || element.Positions == "ST"
     });
     displaySpecificPlayers(selectedTeamST,teamWindow,"Striker");
 
@@ -592,7 +593,7 @@ function displaySpecificPlayers(array,teamWindow,position){
 
        
         label = document.createElement('label');
-        label.innerHTML += "<span> Position: " + element.player_positions + ", " + element.short_name + ", Rating: " + element.overall + "</span>";
+        label.innerHTML += "<span> Position: " + element.Positions + ", " + element.FullName + ", Rating: " + element.Overall + "</span>";
 
         teamWindow.appendChild(label);
         teamWindow.appendChild(document.createElement("br"));
@@ -616,13 +617,13 @@ function displayAllTeams() {
         linebreak = document.createElement("br");
         playerDiv.appendChild(linebreak)
 
-        element.selectedPlayers.sort((a,b) => (a.overall > b.overall) ? -1 : ((b.overall > a.overall) ? 1 : 0))
+        element.selectedPlayers.sort((a,b) => (a.Overall > b.Overall) ? -1 : ((b.Overall > a.Overall) ? 1 : 0))
 
         element.selectedPlayers.forEach(player => {
             label = document.createElement('label');
             label.innerHTML += 
-            "<span>" + player.overall + ", " + 
-            player.short_name+   "</span>";
+            "<span>" + player.Overall + ", " + 
+            player.Name+   "</span>";
             playerDiv.appendChild(label);
             linebreak = document.createElement("br");
             playerDiv.appendChild(linebreak)
