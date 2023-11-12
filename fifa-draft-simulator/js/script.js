@@ -422,7 +422,7 @@ function displayPlayers() {
         idFirstPart = idString.substring(0, 3);
         idSecondPart = idString.substring(3, 6);
 
-        image.setAttribute('src', 'https://cdn.sofifa.com/players/' + idFirstPart + '/' + idSecondPart + '/20_120.png');
+        image.setAttribute('src', 'https://cdn.sofifa.net/players/' + idFirstPart + '/' + idSecondPart + '/20_120.png');
     
         
       
